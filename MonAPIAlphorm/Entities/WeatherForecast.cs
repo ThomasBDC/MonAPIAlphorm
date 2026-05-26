@@ -1,4 +1,4 @@
-namespace MonAPIAlphorm
+namespace MonAPIAlphorm.Entities
 {
     public class WeatherForecast
     {
