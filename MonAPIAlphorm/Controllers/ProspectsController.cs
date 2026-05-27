@@ -23,18 +23,27 @@ namespace MonAPIAlphorm.Controllers
 
         // GET: api/<ProspectsController>
         [HttpGet]
-        public IEnumerable<ProspectDTO> Get()
+        public async Task<IEnumerable<ProspectDTO>> Get()
         {
-            var maListe = _prospectService.GetProspects();
+            var maListe = await _prospectService.GetProspects();
 
             return maListe.Select(p => p.ToDTO());
         }
 
         // GET api/<ProspectsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<ProspectDTO>> Get(int id)
         {
-            return "value";
+            var prospect = await _prospectService.GetProspect(id);
+            if (prospect == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var prospectDto = prospect.ToDTO();
+                return prospectDto;
+            }
         }
 
         // POST api/<ProspectsController>

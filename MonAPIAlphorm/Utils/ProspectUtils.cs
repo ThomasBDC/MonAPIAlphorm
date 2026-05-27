@@ -12,7 +12,8 @@ namespace MonAPIAlphorm.Utils
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
-                Email = entity.Email
+                Email = entity.Email,
+                Phone = entity.Phone
             };
         }
 
@@ -23,7 +24,8 @@ namespace MonAPIAlphorm.Utils
                 Id = dto.Id,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
-                Email = dto.Email
+                Email = dto.Email,
+                Phone = dto.Phone
             };
         }
 

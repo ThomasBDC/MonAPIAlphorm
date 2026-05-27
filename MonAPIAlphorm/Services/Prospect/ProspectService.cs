@@ -1,4 +1,5 @@
-﻿using MonAPIAlphorm.BDD;
+﻿using Microsoft.EntityFrameworkCore;
+using MonAPIAlphorm.BDD;
 using MonAPIAlphorm.Entities;
 
 namespace MonAPIAlphorm.Services.Prospect
@@ -10,12 +11,16 @@ namespace MonAPIAlphorm.Services.Prospect
         {
             _context = context;
         }
-        public List<ProspectEntity> GetProspects()
+        public async Task<List<ProspectEntity>> GetProspects()
         {
-            return new List<ProspectEntity>
-            { 
-                new ProspectEntity { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", Phone = "123-456-7890", Address = "123 Main St" } 
-            };
+            var prospects = await _context.Propects.ToListAsync();
+            return prospects;
+        }
+
+        public async Task<ProspectEntity> GetProspect(int id)
+        {
+            var prospect = await _context.Propects.FindAsync(id);
+            return prospect;
         }
 
         public async Task<bool> CreateProspect(ProspectEntity prospect)

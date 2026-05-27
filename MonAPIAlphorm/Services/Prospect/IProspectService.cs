@@ -4,7 +4,8 @@ namespace MonAPIAlphorm.Services.Prospect
 {
     public interface IProspectService
     {
-        List<ProspectEntity> GetProspects();
+        Task<List<ProspectEntity>> GetProspects();
+        Task<ProspectEntity> GetProspect(int id);
         Task<bool> CreateProspect(ProspectEntity prospect);
     }
 }   
