@@ -26,5 +26,17 @@ namespace MonAPIAlphorm.Utils
                 Email = dto.Email
             };
         }
+
+        public static ProspectEntity ToEntity(this CreateProspectDTO dto)
+        {
+            return new ProspectEntity
+            {
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Address = dto.Address,
+                Phone   = dto.Phone,
+            };
+        }
     }
 }
