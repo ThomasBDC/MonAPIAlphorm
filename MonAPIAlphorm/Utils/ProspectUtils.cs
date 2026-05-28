@@ -40,5 +40,18 @@ namespace MonAPIAlphorm.Utils
                 Phone   = dto.Phone,
             };
         }
+
+        public static ProspectEntity ToEntity(this EditProspectDTO dto)
+        {
+            return new ProspectEntity
+            {
+                Id = dto.Id,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Address = dto.Address,
+                Phone = dto.Phone,
+            };
+        }
     }
 }

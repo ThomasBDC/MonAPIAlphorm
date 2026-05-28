@@ -64,8 +64,23 @@ namespace MonAPIAlphorm.Controllers
 
         // PUT api/<ProspectsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, EditProspectDTO prospectDTO)
         {
+            if(id != prospectDTO.Id)
+            {
+                return BadRequest();
+            }
+
+            var isOk = await _prospectService.EditProspect(prospectDTO.ToEntity());
+
+            if (isOk)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return StatusCode(500, "Une erreur est survenue lors de la modification");
+            }
         }
 
         // DELETE api/<ProspectsController>/5

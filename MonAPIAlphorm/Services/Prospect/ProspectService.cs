@@ -45,5 +45,13 @@ namespace MonAPIAlphorm.Services.Prospect
                 return false;
             }
         }
+
+        public async Task<bool> EditProspect(ProspectEntity prospect)
+        {
+            _context.Entry(prospect).State = EntityState.Modified;
+
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
+        }
     }
 }
