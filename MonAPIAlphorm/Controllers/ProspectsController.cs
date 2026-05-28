@@ -34,6 +34,15 @@ namespace MonAPIAlphorm.Controllers
             return maListe.Select(p => p.ToDTO());
         }
 
+        // GET: api/<ProspectsController>/search?q=<marecherche>
+        [HttpGet("search")]
+        public async Task<IEnumerable<ProspectDTO>> Get(string q)
+        {
+            var maListe = await _prospectService.SearchProspects(q);
+
+            return maListe.Select(p => p.ToDTO());
+        }
+
         // GET api/<ProspectsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProspectDTO>> Get(int id)

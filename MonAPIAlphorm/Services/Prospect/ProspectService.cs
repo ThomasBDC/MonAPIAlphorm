@@ -23,6 +23,23 @@ namespace MonAPIAlphorm.Services.Prospect
             return prospects;
         }
 
+        public async Task<List<ProspectEntity>> SearchProspects(string q)
+        {
+            q = q.Trim();
+            var pattern = $"%{q}%";
+            var request = from p in _context.Propects
+                          where
+                          EF.Functions.Like(p.FirstName, pattern)
+                          || EF.Functions.Like(p.LastName, pattern)
+                          || EF.Functions.Like(p.Phone, pattern)
+                          || EF.Functions.Like(p.Address, pattern)
+                          || EF.Functions.Like(p.Email, pattern)
+                          select p;
+
+            var prospects = await request.ToListAsync();
+            return prospects;
+        }
+
         public async Task<ProspectEntity> GetProspect(int id)
         {
             var prospect = await _context.Propects.FindAsync(id);
