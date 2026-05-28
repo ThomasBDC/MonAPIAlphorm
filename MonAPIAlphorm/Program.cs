@@ -1,5 +1,7 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MonAPIAlphorm.BDD;
+using MonAPIAlphorm.DTOs;
 using MonAPIAlphorm.Services;
 using MonAPIAlphorm.Services.Prospect;
 
@@ -17,6 +19,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 );
 
 builder.Services.AddScoped<IProspectService, ProspectService>();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProspectDTOValidator>();
 
 var app = builder.Build();
 

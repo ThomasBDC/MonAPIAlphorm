@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MonAPIAlphorm.BDD;
 using MonAPIAlphorm.DTOs;
@@ -16,9 +17,12 @@ namespace MonAPIAlphorm.Controllers
     {
         private readonly IProspectService _prospectService;
 
-        public ProspectsController(IProspectService prospectService)
+        private readonly IValidator<CreateProspectDTO> _createProspectValidator;
+
+        public ProspectsController(IProspectService prospectService, IValidator<CreateProspectDTO> createProspectValidator)
         {
             _prospectService = prospectService;
+            _createProspectValidator  = createProspectValidator;
         }
 
         // GET: api/<ProspectsController>
@@ -50,6 +54,13 @@ namespace MonAPIAlphorm.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateProspectDTO dto)
         {
+            var validationResult = await _createProspectValidator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
             var isOk = await _prospectService.CreateProspect(dto.ToEntity());
 
             if (isOk)
