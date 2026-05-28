@@ -70,8 +70,17 @@ namespace MonAPIAlphorm.Controllers
 
         // DELETE api/<ProspectsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var isOk = await _prospectService.DeleteProspect(id);
+            if (isOk)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return StatusCode(500, "Une erreur est survenue lors de la suppression");
+            }
         }
     }
 }

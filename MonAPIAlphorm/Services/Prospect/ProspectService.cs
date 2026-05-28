@@ -27,8 +27,23 @@ namespace MonAPIAlphorm.Services.Prospect
         {
             _context.Add(prospect);
             var result = await _context.SaveChangesAsync();
-
             return result > 0;
+        }
+
+        public async Task<bool> DeleteProspect(int id)
+        {
+            var prospect = await GetProspect(id);
+            if (prospect != null)
+            {
+                _context.Propects.Remove(prospect);
+
+                var result = await _context.SaveChangesAsync();
+                return result > 0;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
