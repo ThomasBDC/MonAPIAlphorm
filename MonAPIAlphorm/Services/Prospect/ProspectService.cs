@@ -42,7 +42,7 @@ namespace MonAPIAlphorm.Services.Prospect
 
         public async Task<ProspectEntity> GetProspect(int id)
         {
-            var prospect = await _context.Propects.FindAsync(id);
+            var prospect = await _context.Propects.Include(p => p.Company).FirstOrDefaultAsync(p => p.Id == id);
             return prospect;
         }
 

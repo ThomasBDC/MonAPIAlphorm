@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MonAPIAlphorm.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace MonAPIAlphorm.DTOs
@@ -11,6 +12,10 @@ namespace MonAPIAlphorm.DTOs
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public Guid? CompanyId { get; set; }
+        public string? CompanyName { get; set; }
+        public string? CompanyCity { get; set; }
     }
 
     public class EditProspectDTO

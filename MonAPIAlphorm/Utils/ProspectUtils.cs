@@ -13,7 +13,10 @@ namespace MonAPIAlphorm.Utils
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 Email = entity.Email,
-                Phone = entity.Phone
+                Phone = entity.Phone,
+                CompanyCity = entity.Company?.City,
+                CompanyName = entity.Company?.Name,
+                CompanyId = entity.CompanyId
             };
         }
 
