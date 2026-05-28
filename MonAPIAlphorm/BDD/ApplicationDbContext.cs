@@ -12,6 +12,7 @@ namespace MonAPIAlphorm.BDD
         }
 
         public DbSet<ProspectEntity> Propects { get; set; }
+        public DbSet<CompanyEntity> Companies { get; set; }
         public DbSet<EmailTemplateEntity> EmailTemplates { get; set; }
     }
 }

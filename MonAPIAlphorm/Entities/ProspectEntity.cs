@@ -11,5 +11,10 @@ namespace MonAPIAlphorm.Entities
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+
+        //Colonne en BDD
+        public Guid? CompanyId { get; set; }
+        //Objet de liaison
+        public CompanyEntity? Company { get; set; } 
     }
 }
