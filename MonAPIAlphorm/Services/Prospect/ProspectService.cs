@@ -11,9 +11,15 @@ namespace MonAPIAlphorm.Services.Prospect
         {
             _context = context;
         }
-        public async Task<List<ProspectEntity>> GetProspects()
+        public async Task<List<ProspectEntity>> GetProspects(int page, int pageSize)
         {
-            var prospects = await _context.Propects.ToListAsync();
+            if (page < 1) page = 1;
+            if (pageSize < 10) pageSize = 10;
+
+            var prospects = await _context.Propects
+                .Skip((page - 1)* pageSize)
+                .Take(pageSize)
+                .ToListAsync();
             return prospects;
         }
 

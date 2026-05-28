@@ -27,9 +27,9 @@ namespace MonAPIAlphorm.Controllers
 
         // GET: api/<ProspectsController>
         [HttpGet]
-        public async Task<IEnumerable<ProspectDTO>> Get()
+        public async Task<IEnumerable<ProspectDTO>> Get(int page = 1, int pageSize = 10)
         {
-            var maListe = await _prospectService.GetProspects();
+            var maListe = await _prospectService.GetProspects(page, pageSize);
 
             return maListe.Select(p => p.ToDTO());
         }
